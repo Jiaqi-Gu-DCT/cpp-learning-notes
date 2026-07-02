@@ -1,0 +1,15 @@
+# 编译产物
+*.o
+*.out
+*.exe
+*.so
+*.a
+# 构建文件夹
+build/
+bin/
+# VSCode配置
+.vscode/
+# 临时文件、日志
+*.log
+*.tmp
+.DS_Store

@@ -6,6 +6,8 @@
 #include <chrono>
 using namespace std;
 
+mutex printMutex;
+
 class BoundedBuffer{
 private:
     mutex mtx;
@@ -37,6 +39,7 @@ public:
 void producer(BoundedBuffer& buf){
     for(int i = 0; i < 10; i++){
         buf.produce(i);
+        lock_guard <mutex> lg(printMutex);
         cout << "Produced:" << i << endl;
         this_thread::sleep_for(chrono::milliseconds(50));
     }
@@ -45,18 +48,24 @@ void producer(BoundedBuffer& buf){
 // 消费者函数
 void consumer(BoundedBuffer& buf){
     for(int i = 0; i < 10; i++){
-        buf.consume();
+        int val = buf.consume();
+        lock_guard <mutex> lg(printMutex);
+        cout << "Consumed:" << val << endl;
         this_thread::sleep_for(chrono::milliseconds(50));
     }
 }
 
 int main(){
     BoundedBuffer buffer(3);
-    thread prod(producer, ref(buffer));
-    thread cons(consumer, ref(buffer));
+    thread prod1(producer, ref(buffer));
+    thread cons1(consumer, ref(buffer));
+    thread prod2(producer, ref(buffer));
+    thread cons2(consumer, ref(buffer));
 
-    prod.join();
-    cons.join();
+    prod1.join();
+    prod2.join();
+    cons1.join();
+    cons2.join();
 
     cout << "all the task of producing and consuming are finished." << endl;
     return 0;

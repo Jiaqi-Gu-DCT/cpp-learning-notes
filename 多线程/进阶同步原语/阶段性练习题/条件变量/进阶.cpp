@@ -11,7 +11,6 @@
 using namespace std;
 
 class S_queue{
-friend void consume(S_queue& s_q);
 private:
     queue<int> q;
     mutex mtx;

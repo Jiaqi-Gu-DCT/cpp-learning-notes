@@ -48,7 +48,10 @@ int main(){
 
     // 4.write to pipe
     printf("read at Non-blocking mode after writing.\n");
-    write(pipefd[1], "aiueo", 6);
+    if(write(pipefd[1], "aiueo", 6) == -1){
+        perror("write");
+        return 1;
+    }
     n = read(pipefd[0], buf, sizeof(buf));
     printf("read's returned value is:%zd, content is:%.*s\n", n, (int)n, buf);
 

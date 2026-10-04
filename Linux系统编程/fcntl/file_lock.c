@@ -12,7 +12,7 @@ int try_get_lock(int fd){
     fl.l_type = F_WRLCK;
     fl.l_whence = SEEK_SET;
     fl.l_start = 0;
-    fl.l_len = 0;
+    fl.l_len = 0;// 按此设定意味着锁的范围是整个文件
 
     if(fcntl(fd, F_SETLK, &fl) == -1){
         if(errno == EACCES || errno == EAGAIN){

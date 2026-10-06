@@ -1,0 +1,18 @@
+# 编译产物
+*.o
+*.out
+main
+copy_bench
+*.exe
+
+# 测试大文件
+*.bin
+test_*
+
+# IDE 配置
+.vscode/
+.idea/
+
+# 临时文件
+*.tmp
+*.swp

@@ -64,7 +64,7 @@ private:
 
 class MmapView{
 public:
-    MmapView(size_t length, int prot, int flags, int fd):m_addr (::mmap(NULL, length, prot, flags, fd, 0)), m_length(length){
+    MmapView(size_t length, int prot, int flags, int fd): m_addr(::mmap(NULL, length, prot, flags, fd, 0)), m_length(length){
        if(m_addr == MAP_FAILED){
         throw std::system_error(errno, std::generic_category(), "mmap");
        }

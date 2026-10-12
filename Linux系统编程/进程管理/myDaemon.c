@@ -157,7 +157,7 @@ int main(int argc, char* argv[]){
 
     setupSignals();
     writePidFile();
-    writeLog("守护进程启动！");
+    if(foreground){writeLog("前台模式 程序启动！");}else{writeLog("守护模式 程序启动！");}
     writeLog("PID: %d, PPID: %d, SID: %d", getpid(), getppid(), getsid(0));
 
     int counter = 0;

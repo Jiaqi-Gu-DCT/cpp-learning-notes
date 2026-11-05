@@ -1,5 +1,6 @@
 #include "log_client.h"
 #include <stdarg.h>
+const char *LEVEL_NAMES[] = {"DEBUG", "INFO", "WARN", "ERROR"};
 
 int log_connect(LogClient *client, const char *proc_name) {
     memset(client, 0, sizeof(LogClient));

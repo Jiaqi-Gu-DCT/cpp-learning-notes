@@ -2,6 +2,7 @@
 #define LOG_CLIENT_H
 
 #include "log_common.h"
+const char *LEVEL_NAMES[] = {"DEBUG", "INFO", "WARN", "ERROR"};
 
 // 客户端上下文
 typedef struct {

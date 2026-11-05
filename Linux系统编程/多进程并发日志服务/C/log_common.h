@@ -32,7 +32,7 @@ typedef enum {
     LOG_ERROR = 3
 } LogLevel;
 
-static const char *LEVEL_NAMES[] = {"DEBUG", "INFO", "WARN", "ERROR"};
+extern const char *LEVEL_NAMES[];
 
 // ===== 日志条目结构体 ===== 按照功能需求中的日志格式构造一个结构体
 typedef struct {
